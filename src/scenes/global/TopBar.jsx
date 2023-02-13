@@ -1,13 +1,6 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import SideBar from "./SideBar";
-// import { Search } from "@mui/icons-material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
 import { InputBase } from "@mui/material";
@@ -68,7 +61,7 @@ export default function TopBar() {
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
-            placeholder="Search…"
+            placeholder="Chercher…"
             inputProps={{ "aria-label": "search" }}
           />
         </Search>
