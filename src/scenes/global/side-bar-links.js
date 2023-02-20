@@ -7,13 +7,13 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 
 export const links = [
-  { label: "Statistiques", icon: "stats" },
-  { label: "Magasin", icon: "shop" },
-  { label: "Catégories", icon: "categories" },
-  { label: "Articles", icon: "articles" },
-  { label: "Notifications", icon: "notifications" },
-  { label: "Paramètres", icon: "settings" },
-  { label: "Déconnexion", icon: "logout" },
+  { label: "Statistiques", icon: "stats", link: "/stats" },
+  { label: "Magasin", icon: "shop", link: "/shop" },
+  { label: "Catégories", icon: "categories", link: "/categories" },
+  { label: "Articles", icon: "articles", link: "/articles" },
+  { label: "Notifications", icon: "notifications", link: "/notifications" },
+  { label: "Paramètres", icon: "settings", link: "/settings" },
+  { label: "Déconnexion", icon: "logout", link: "/" },
 ];
 
 export const linksIcons = (icons) => {

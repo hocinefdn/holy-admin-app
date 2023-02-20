@@ -18,6 +18,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
 import TopBar from "./TopBar";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -86,7 +87,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-export default function SideBar({ content }) {
+function SideBar({ content }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -131,29 +132,36 @@ export default function SideBar({ content }) {
         <Divider />
         <List>
           {links.map((link, index) => (
-            <ListItem key={link.label} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                }}
+            <Link key={`link-${link.label}`} to={link.link}>
+              <ListItem
+                key={link.label}
+                disablePadding
+                sx={{ display: "block" }}
+                to={link.link}
               >
-                <ListItemIcon
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {linksIcons(link.icon)}
-                </ListItemIcon>
-                <ListItemText
-                  primary={link.label}
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {linksIcons(link.icon)}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={link.label}
+                    sx={{ opacity: open ? 1 : 0 }}
+                  />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
@@ -165,3 +173,5 @@ export default function SideBar({ content }) {
     </Box>
   );
 }
+
+export default SideBar;
