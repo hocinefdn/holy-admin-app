@@ -12,7 +12,9 @@ const ShopManagement = () => {
   return (
     <div>
       <div className="p-4">
-        <h1 className="text-xl font-bold text-center">Gérer la boutique</h1>
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900">
+          Gérer la boutique
+        </h2>
       </div>
       <Accordion>
         <AccordionSummary
