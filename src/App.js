@@ -12,45 +12,14 @@ import ArticlesPage from "./pages/ArticlesPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import SettingsPage from "./pages/SettingsPage";
 import ErrorPage from "./pages/ErrorPage";
-
-const router = createBrowserRouter([
-  {
-    path: "/stats",
-    element: <StatsPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/shop",
-    element: <ShopPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/categories",
-    element: <CategoriesPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/articles",
-    element: <ArticlesPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/notifications",
-    element: <NotificationsPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/settings",
-    element: <SettingsPage />,
-    errorElement: <ErrorPage />,
-  },
-]);
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
     <div className="app">
       <Router>
         <Routes>
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/categories" element={<CategoriesPage />} />

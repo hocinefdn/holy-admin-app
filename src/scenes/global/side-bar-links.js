@@ -8,7 +8,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 
 export const links = [
   { label: "Statistiques", icon: "stats", link: "/stats" },
-  { label: "Magasin", icon: "shop", link: "/shop" },
+  { label: "Boutique", icon: "shop", link: "/shop" },
   { label: "Catégories", icon: "categories", link: "/categories" },
   { label: "Articles", icon: "articles", link: "/articles" },
   { label: "Notifications", icon: "notifications", link: "/notifications" },
