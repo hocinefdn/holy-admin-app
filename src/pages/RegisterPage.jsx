@@ -1,6 +1,5 @@
 import Header from "../components/home/Header";
-
-function LoginPage() {
+function RegisterPage() {
   return (
     <div className="w-full">
       <Header />
@@ -13,12 +12,29 @@ function LoginPage() {
               alt="Your Company"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Connectez-vous à votre compte
+              Créer un compte
             </h2>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
+              <input
+                id="lastname"
+                name="lastname"
+                type="text"
+                required
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Nom"
+              />
+              <input
+                id="firstname"
+                name="firstname"
+                type="text"
+                required
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Prénom"
+              />
+
               <input
                 id="email"
                 name="email"
@@ -27,6 +43,16 @@ function LoginPage() {
                 required
                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Email"
+              />
+
+              <input
+                id="phone"
+                name="phone"
+                type="phone"
+                autoComplete="phone"
+                required
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Téléphone"
               />
 
               <input
@@ -39,6 +65,7 @@ function LoginPage() {
                 placeholder="Mot de passe"
               />
             </div>
+
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -71,7 +98,7 @@ function LoginPage() {
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
-                Se connecter
+                S'inscrire
               </button>
             </div>
           </form>
@@ -81,4 +108,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
