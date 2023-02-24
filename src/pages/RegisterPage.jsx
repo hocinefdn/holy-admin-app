@@ -1,7 +1,31 @@
 import { Button } from "@mui/material";
 import { color } from "@mui/system";
 import Header from "../components/home/Header";
+import axios from "axios";
+
 function RegisterPage() {
+  const url = "http://achete-le.test/api";
+
+  const addUser = () => {
+    const user = {
+      firstname: document.getElementById("firstname").value,
+      lastname: document.getElementById("lastname").value,
+      email: document.getElementById("email").value,
+      phone: document.getElementById("phone").value,
+      password: document.getElementById("password").value,
+    };
+
+    console.log("user :>> ", user);
+    axios
+      .post(url + "/user", user)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+  };
+
   return (
     <div className="w-full">
       <Header />
@@ -21,20 +45,20 @@ function RegisterPage() {
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <input
-                id="lastname"
-                name="lastname"
-                type="text"
-                required
-                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="Nom"
-              />
-              <input
                 id="firstname"
                 name="firstname"
                 type="text"
                 required
                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Prénom"
+              />
+              <input
+                id="lastname"
+                name="lastname"
+                type="text"
+                required
+                className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                placeholder="Nom"
               />
 
               <input
@@ -99,6 +123,7 @@ function RegisterPage() {
                 variant="contained"
                 color="secondary"
                 sx={{ color: "white" }}
+                onClick={() => addUser()}
               >
                 {" "}
                 S'inscrire

@@ -8,7 +8,7 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            AcheteLe
           </Typography>
 
           <div className="w-40 flex justify-between absolute right-2">
