@@ -1,11 +1,16 @@
-import { Button, LinearProgress } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
 
 //  components
 import Header from "../components/home/Header";
+import { Button, LinearProgress } from "@mui/material";
 import AlertInfo from "../components/global/AlertInfo";
-import axios from "axios";
-import { useState } from "react";
+import logo from "../images/HoLyzLogo.png";
+
+// consts
 import { apiUrl } from "../constants/api";
+import { Link } from "react-router-dom";
+
 function RegisterPage() {
   const [open, setOpen] = useState(false);
 
@@ -46,15 +51,11 @@ function RegisterPage() {
         setOpen={setOpen}
       />
 
-      <div className="flex  items-center justify-center py-12 px-4 sm:px-6 lg:px-8 w-full">
+      <div className="flex  items-center justify-center py-5 px-4 sm:px-6 lg:px-8 w-full">
         <div className="w-full max-w-md space-y-8">
           <div>
-            <img
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
-            />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+            <img className="mx-auto h-28 w-auto" src={logo} alt="Holyz" />
+            <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">
               Créer un compte
             </h2>
           </div>
@@ -126,12 +127,9 @@ function RegisterPage() {
               </div>
 
               <div className="text-sm">
-                <a
-                  href="/"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
+                <Link color="secondary" to="/forgot-password">
                   Mot de passe oublié ?
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -142,7 +140,6 @@ function RegisterPage() {
                 sx={{ color: "white" }}
                 onClick={() => addUser()}
               >
-                {" "}
                 S'inscrire
               </Button>
             </div>

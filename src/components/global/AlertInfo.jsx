@@ -3,12 +3,9 @@ import Box from "@mui/material/Box";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
-import Button from "@mui/material/Button";
 import CloseIcon from "@mui/icons-material/Close";
 
 export default function AlertInfo({ message, open, setOpen }) {
-  //   const [open, setOpen] = changeOpen(true);
-
   return (
     <Box sx={{ width: "100%" }}>
       <Collapse in={open}>
