@@ -1,12 +1,17 @@
-import { Button } from "@mui/material";
-import { color } from "@mui/system";
-import Header from "../components/home/Header";
-import axios from "axios";
+import { Button, LinearProgress } from "@mui/material";
 
+//  components
+import Header from "../components/home/Header";
+import AlertInfo from "../components/global/AlertInfo";
+import axios from "axios";
+import { useState } from "react";
+import { apiUrl } from "../constants/api";
 function RegisterPage() {
-  const url = "http://achete-le.test/api";
+  const [open, setOpen] = useState(false);
 
   const addUser = () => {
+    // to display linear progress bar
+    document.getElementById("linear-progress").style = "display:block";
     const user = {
       firstname: document.getElementById("firstname").value,
       lastname: document.getElementById("lastname").value,
@@ -14,11 +19,13 @@ function RegisterPage() {
       phone: document.getElementById("phone").value,
       password: document.getElementById("password").value,
     };
-
-    console.log("user :>> ", user);
     axios
-      .post(url + "/user", user)
+      .post(apiUrl + "/user", user)
       .then((res) => {
+        // hide linear progress bar
+        document.getElementById("linear-progress").style = "display:none";
+        // display alert info
+        setOpen(true);
         console.log(res);
       })
       .catch((err) => {
@@ -29,6 +36,16 @@ function RegisterPage() {
   return (
     <div className="w-full">
       <Header />
+
+      <div className="hidden" id="linear-progress">
+        <LinearProgress color="success" />
+      </div>
+      <AlertInfo
+        message="Votre compte a été créé avec succès. Pour terminer la création de votre compte, vous devez confirmer l'adresse e-mail en cliquant sur le lien dans votre boîte mail"
+        open={open}
+        setOpen={setOpen}
+      />
+
       <div className="flex  items-center justify-center py-12 px-4 sm:px-6 lg:px-8 w-full">
         <div className="w-full max-w-md space-y-8">
           <div>
