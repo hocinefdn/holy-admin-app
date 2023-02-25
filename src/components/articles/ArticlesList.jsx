@@ -1,6 +1,9 @@
 import { Button, IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
+import AddIcon from "@mui/icons-material/Add";
+import { useState } from "react";
+import AddArticle from "./AddArticle";
 const products = [
   {
     id: 1,
@@ -85,12 +88,27 @@ const products = [
 ];
 
 export default function ArticlesList() {
+  const [openDialog, setOpenDialog] = useState(false);
+  const handleClickOpen = () => {
+    setOpenDialog(true);
+  };
   return (
     <div className="bg-white flex justify-center">
+      <AddArticle setOpenDialog={setOpenDialog} openDialog={openDialog} />
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900 text-center">
-          Gérer les articles
-        </h2>
+        <div className="flex justify-between">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900 text-center">
+            Gérer les articles
+          </h2>
+          <Button
+            variant="contained"
+            endIcon={<AddIcon />}
+            color="success"
+            onClick={() => setOpenDialog(true)}
+          >
+            Ajouter
+          </Button>
+        </div>
 
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {products.map((product) => (

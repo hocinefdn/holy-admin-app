@@ -29,7 +29,7 @@ const theme = createTheme({
     success: {
       light: "#58D68D",
       main: "#2ECC71",
-      dark: "#ba000d",
+      dark: "#82E0AA",
       contrastText: "#000",
     },
   },
