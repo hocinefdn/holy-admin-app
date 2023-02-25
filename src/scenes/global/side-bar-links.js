@@ -10,7 +10,7 @@ import GroupIcon from "@mui/icons-material/Group";
 export const links = [
   { label: "Statistiques", icon: "stats", link: "/stats" },
   { label: "Boutique", icon: "shop", link: "/shop" },
-  { label: "Catégories", icon: "categories", link: "/categories" },
+  // { label: "Catégories", icon: "categories", link: "/categories" },
   { label: "Articles", icon: "articles", link: "/articles" },
   { label: "Clients", icon: "group", link: "/customers" },
   { label: "Notifications", icon: "notifications", link: "/notifications" },

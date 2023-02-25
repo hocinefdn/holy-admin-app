@@ -1,9 +1,5 @@
-import {
-  createBrowserRouter,
-  Route,
-  BrowserRouter as Router,
-  Routes,
-} from "react-router-dom";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 //pages
 import StatsPage from "./pages/StatsPage";
 import ShopPage from "./pages/ShopPage";
@@ -15,8 +11,6 @@ import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
-import { orange } from "@mui/material/colors";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {

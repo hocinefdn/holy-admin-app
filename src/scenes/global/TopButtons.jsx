@@ -2,6 +2,7 @@ import { AccountCircle } from "@mui/icons-material";
 import { Badge, Box, IconButton } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState } from "react";
 import React from "react";
 
@@ -13,6 +14,11 @@ function TopButtons() {
   };
   return (
     <Box sx={{ display: { xs: "none", md: "flex" } }}>
+      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+        <Badge badgeContent={8} color="error">
+          <AddShoppingCartIcon />
+        </Badge>
+      </IconButton>
       <IconButton size="large" aria-label="show 4 new mails" color="inherit">
         <Badge badgeContent={4} color="error">
           <MailIcon />
