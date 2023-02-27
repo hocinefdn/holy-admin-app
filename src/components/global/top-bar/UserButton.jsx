@@ -1,21 +1,19 @@
-import { Badge, Box, IconButton } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import Typography from "@mui/material/Typography";
-import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useState } from "react";
-import React from "react";
+import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../../store/reducers/userSlice";
 
-function TopButtons() {
+const UserButton = () => {
+  const dispatch = useDispatch();
   const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = useState(null);
   const handleProfileMenuOpen = (event) => {
@@ -29,41 +27,24 @@ function TopButtons() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const logout = () => {
+    dispatch(logoutUser());
+    window.location = "/";
+  };
   return (
-    <Box sx={{ display: { xs: "none", md: "flex" } }}>
-      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-        <Badge badgeContent={8} color="error">
-          <AddShoppingCartIcon />
-        </Badge>
-      </IconButton>
-      <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-        <Badge badgeContent={4} color="error">
-          <MailIcon />
-        </Badge>
-      </IconButton>
+    <div>
       <IconButton
-        size="large"
-        aria-label="show 17 new notifications"
-        color="inherit"
+        onClick={handleClick}
+        size="small"
+        sx={{ ml: 2 }}
+        aria-controls={open ? "account-menu" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
       >
-        <Badge badgeContent={17} color="error">
-          <NotificationsIcon />
-        </Badge>
+        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
       </IconButton>
 
-      {/* acount menu */}
-      <Tooltip title="Account settings">
-        <IconButton
-          onClick={handleClick}
-          size="small"
-          sx={{ ml: 2 }}
-          aria-controls={open ? "account-menu" : undefined}
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-        >
-          <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-        </IconButton>
-      </Tooltip>
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
@@ -100,10 +81,12 @@ function TopButtons() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
+          <Link to="/profile" className="flex flex-row items-center">
+            <ListItemIcon>
+              <Avatar fontSize="small" />
+            </ListItemIcon>
+            Profil
+          </Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleClose}>
@@ -112,21 +95,23 @@ function TopButtons() {
           </ListItemIcon>
           Add another account
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
+        <MenuItem>
+          <Link to="/settings" className="flex flex-row items-center">
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Paramètres
+          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={logout}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           Logout
         </MenuItem>
       </Menu>
-    </Box>
+    </div>
   );
-}
+};
 
-export default TopButtons;
+export default UserButton;

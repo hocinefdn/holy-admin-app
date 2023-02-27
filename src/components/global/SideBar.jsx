@@ -16,7 +16,8 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
-import TopBar from "./TopBar";
+import TopBar from "./top-bar/TopBarAdmin";
+
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
