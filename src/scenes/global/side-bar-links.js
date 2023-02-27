@@ -15,7 +15,6 @@ export const links = [
   { label: "Clients", icon: "group", link: "/customers" },
   { label: "Notifications", icon: "notifications", link: "/notifications" },
   { label: "Paramètres", icon: "settings", link: "/settings" },
-  { label: "Déconnexion", icon: "logout", link: "/" },
 ];
 
 export const linksIcons = (icons) => {
