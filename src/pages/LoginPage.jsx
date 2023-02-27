@@ -1,14 +1,28 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import { apiUrl } from "../constants/api";
 // components
 import Header from "../components/global/Header";
 import logo from "../images/HoLyzLogo.png";
+import { setUserData } from "../store/reducers/userSlice";
 
 function LoginPage() {
-  const user = useSelector((state) => state.user.userData);
+  const [user, setUser] = useState({ email: "", password: "" });
+  // const userLoged = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  console.log("user :>> ", user);
+  const login = () => {
+    axios
+      .post(apiUrl + "/user/login", user)
+      .then((res) => {
+        dispatch(setUserData({ user: res.data.user, token: res.data.token }));
+        window.location = "/stats";
+      })
+      .catch((err) => console.log("err :>> ", err.response.data.message));
+  };
   return (
     <div className="w-full">
       <Header />
@@ -20,7 +34,7 @@ function LoginPage() {
               Connectez-vous à votre compte
             </h2>
           </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
+          <div className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <input
@@ -31,6 +45,7 @@ function LoginPage() {
                 required
                 className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Email"
+                onChange={(e) => setUser({ ...user, email: e.target.value })}
               />
 
               <input
@@ -41,6 +56,7 @@ function LoginPage() {
                 required
                 className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 placeholder="Mot de passe"
+                onChange={(e) => setUser({ ...user, password: e.target.value })}
               />
             </div>
             <div className="flex items-center justify-between">
@@ -49,7 +65,7 @@ function LoginPage() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-red-500 focus:ring-red-500"
                 />
                 <label
                   htmlFor="remember-me"
@@ -68,14 +84,13 @@ function LoginPage() {
 
             <div>
               <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded-md border border-transparent bg-red-500 py-2 px-4 text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                onClick={() => login()}
               >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3"></span>
                 Se connecter
               </button>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ function RegisterPage() {
       password: document.getElementById("password").value,
     };
     axios
-      .post(apiUrl + "/user", user)
+      .post(apiUrl + "/user/register", user)
       .then((res) => {
         // hide linear progress bar
         document.getElementById("linear-progress").style = "display:none";
