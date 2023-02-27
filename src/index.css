@@ -12,11 +12,11 @@ html,body,#root,.app{
 .content {
   width: 100%;
 } 
-.app{
+/* .app{
   display: flex;
   position: relative;
   justify-content: center;
-}
+} */
 
 ::-webkit-scrollbar{
   width: 10px;

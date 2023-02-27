@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 // components
-import Header from "../components/home/Header";
+import Header from "../components/global/Header";
 import logo from "../images/HoLyzLogo.png";
 
 function LoginPage() {

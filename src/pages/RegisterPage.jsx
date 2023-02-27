@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 
 //  components
-import Header from "../components/home/Header";
+import Header from "../components/global/Header";
 import { Button, LinearProgress } from "@mui/material";
 import AlertInfo from "../components/global/AlertInfo";
 import logo from "../images/HoLyzLogo.png";

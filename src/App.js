@@ -11,6 +11,7 @@ import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
+import TariffsPage from "./pages/TariffsPage";
 
 const theme = createTheme({
   palette: {
@@ -43,8 +44,11 @@ function App() {
           {/* #########  Routes  ######## */}
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/tariffs" element={<TariffsPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
+
+            {/* -------------  Dashboard  -------------- */}
             <Route path="/stats" element={<StatsPage />} />
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/categories" element={<CategoriesPage />} />

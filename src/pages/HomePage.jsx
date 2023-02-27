@@ -1,11 +1,14 @@
 import React from "react";
 import Card from "../components/home/Card";
 import ContactContainer from "../components/home/ContactContainer";
-import Header from "../components/home/Header";
+import Header from "../components/global/Header";
+import InfoSite from "../components/home/InfoSite";
+import "../components/home/style.css";
 const HomePage = () => {
   return (
     <div className="w-full">
       <Header />
+      <InfoSite />
       <Card
         className="section"
         img="./Capture1.PNG"
