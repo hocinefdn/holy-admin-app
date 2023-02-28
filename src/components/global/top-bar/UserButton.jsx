@@ -13,9 +13,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/reducers/userSlice";
 
 const UserButton = () => {
+  const userLoged = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const menuId = "primary-search-account-menu";
   const [anchorEl, setAnchorEl] = useState(null);
+
+  const name = userLoged.userData.lastname + " " + userLoged.userData.firstname;
+
+  //functions
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -42,7 +46,7 @@ const UserButton = () => {
         aria-haspopup="true"
         aria-expanded={open ? "true" : undefined}
       >
-        <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
+        <Avatar sx={{ width: 32, height: 32 }}>{name[0]}</Avatar>
       </IconButton>
 
       <Menu

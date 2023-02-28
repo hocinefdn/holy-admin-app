@@ -17,7 +17,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
 import TopBar from "./top-bar/TopBarAdmin";
-
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -88,6 +88,13 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 function SideBar({ content }) {
+  const userLoged = useSelector((state) => state.user);
+  React.useEffect(() => {
+    if (!userLoged.token) {
+      window.location.href = "/login";
+    }
+  }, []);
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 

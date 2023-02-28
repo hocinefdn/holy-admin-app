@@ -11,9 +11,9 @@ import { setUserData } from "../store/reducers/userSlice";
 
 function LoginPage() {
   const [user, setUser] = useState({ email: "", password: "" });
-  // const userLoged = useSelector((state) => state.user);
+  const token = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  console.log("token :>> ", token);
   const login = () => {
     axios
       .post(apiUrl + "/user/login", user)
