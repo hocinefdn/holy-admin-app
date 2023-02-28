@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -8,17 +8,26 @@ import { apiUrl } from "../constants/api";
 import Header from "../components/global/Header";
 import logo from "../images/HoLyzLogo.png";
 import { setUserData } from "../store/reducers/userSlice";
+import { LinearProgress } from "@mui/material";
 
 function LoginPage() {
-  const [user, setUser] = useState({ email: "", password: "" });
-  const token = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  console.log("token :>> ", token);
+  const userLoged = useSelector((state) => state.user);
+  const [user, setUser] = useState({ email: "", password: "" });
+
+  useEffect(() => {
+    if (userLoged.token != null) {
+      window.location.href = "/stats";
+    }
+  }, []);
   const login = () => {
+    // to display linear progress bar
+    document.getElementById("linear-progress").style = "display:block";
     axios
       .post(apiUrl + "/user/login", user)
       .then((res) => {
         dispatch(setUserData({ user: res.data.user, token: res.data.token }));
+
         window.location = "/stats";
       })
       .catch((err) => console.log("err :>> ", err.response.data.message));
@@ -26,6 +35,9 @@ function LoginPage() {
   return (
     <div className="w-full">
       <Header />
+      <div className="hidden" id="linear-progress">
+        <LinearProgress color="success" />
+      </div>
       <div className="flex  items-center justify-center py-5 px-4 sm:px-6 lg:px-8 w-full">
         <div className="w-full max-w-md space-y-8">
           <div>

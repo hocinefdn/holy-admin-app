@@ -18,6 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
 import TopBar from "./top-bar/TopBarAdmin";
 import { useSelector, useDispatch } from "react-redux";
+import { setSideBar } from "../../store/reducers/componentsSlice";
 import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
@@ -53,14 +54,14 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 }));
 
 const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+  shouldForwardProp: (prop) => prop !== "sideBarOpen",
+})(({ theme, sideBarOpen }) => ({
   zIndex: theme.zIndex.drawer + 1,
   transition: theme.transitions.create(["width", "margin"], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
-  ...(open && {
+  ...(sideBarOpen && {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
@@ -71,17 +72,17 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
+  shouldForwardProp: (prop) => prop !== "sideBarOpen",
+})(({ theme, sideBarOpen }) => ({
   width: drawerWidth,
   flexShrink: 0,
   whiteSpace: "nowrap",
   boxSizing: "border-box",
-  ...(open && {
+  ...(sideBarOpen && {
     ...openedMixin(theme),
     "& .MuiDrawer-paper": openedMixin(theme),
   }),
-  ...(!open && {
+  ...(!sideBarOpen && {
     ...closedMixin(theme),
     "& .MuiDrawer-paper": closedMixin(theme),
   }),
@@ -89,36 +90,40 @@ const Drawer = styled(MuiDrawer, {
 
 function SideBar({ content }) {
   const userLoged = useSelector((state) => state.user);
+  const sideBarOpen = useSelector((state) => state.sideBar.sideBar);
+  const dispatch = useDispatch();
+
+  console.log("sideBarOpen :>> ", sideBarOpen);
   React.useEffect(() => {
-    if (!userLoged.token) {
+    if (userLoged.token == null) {
       window.location.href = "/login";
     }
   }, []);
 
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  // const [sideBarOpen, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+    dispatch(setSideBar({ value: true }));
   };
 
   const handleDrawerClose = () => {
-    setOpen(false);
+    dispatch(setSideBar({ value: false }));
   };
 
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar position="fixed" sideBarOpen={sideBarOpen}>
         <Toolbar>
           <IconButton
             color="inherit"
-            aria-label="open drawer"
+            aria-label="sideBarOpen drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
               marginRight: 5,
-              ...(open && { display: "none" }),
+              ...(sideBarOpen && { display: "none" }),
             }}
           >
             <MenuIcon />
@@ -126,7 +131,7 @@ function SideBar({ content }) {
           <TopBar />
         </Toolbar>
       </AppBar>
-      <Drawer variant="permanent" open={open}>
+      <Drawer variant="permanent" sideBarOpen={sideBarOpen}>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -149,14 +154,14 @@ function SideBar({ content }) {
                 <ListItemButton
                   sx={{
                     minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
+                    justifyContent: sideBarOpen ? "initial" : "center",
                     px: 2.5,
                   }}
                 >
                   <ListItemIcon
                     sx={{
                       minWidth: 0,
-                      mr: open ? 3 : "auto",
+                      mr: sideBarOpen ? 3 : "auto",
                       justifyContent: "center",
                     }}
                   >
@@ -164,7 +169,7 @@ function SideBar({ content }) {
                   </ListItemIcon>
                   <ListItemText
                     primary={link.label}
-                    sx={{ opacity: open ? 1 : 0 }}
+                    sx={{ opacity: sideBarOpen ? 1 : 0 }}
                   />
                 </ListItemButton>
               </ListItem>

@@ -3,7 +3,6 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
-import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 import { useState } from "react";
@@ -13,11 +12,14 @@ import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/reducers/userSlice";
 
 const UserButton = () => {
-  const userLoged = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const [anchorEl, setAnchorEl] = useState(null);
 
-  const name = userLoged.userData.lastname + " " + userLoged.userData.firstname;
+  const userLoged = useSelector((state) => state.user);
+  const [anchorEl, setAnchorEl] = useState(null);
+  let name = "";
+  if (userLoged.userData != null) {
+    name = userLoged.userData.lastname + " " + userLoged.userData.firstname;
+  }
 
   //functions
   const handleProfileMenuOpen = (event) => {
@@ -93,12 +95,7 @@ const UserButton = () => {
           </Link>
         </MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
+
         <MenuItem>
           <Link to="/settings" className="flex flex-row items-center">
             <ListItemIcon>
