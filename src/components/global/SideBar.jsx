@@ -1,4 +1,6 @@
-import * as React from "react";
+import { useEffect } from "react";
+import { Link } from "react-router-dom";
+//mui
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
@@ -16,10 +18,11 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
+// components
 import TopBar from "./top-bar/TopBarAdmin";
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { setSideBar } from "../../store/reducers/componentsSlice";
-import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -93,16 +96,13 @@ function SideBar({ content }) {
   const sideBarOpen = useSelector((state) => state.sideBar.sideBar);
   const dispatch = useDispatch();
 
-  console.log("sideBarOpen :>> ", sideBarOpen);
-  React.useEffect(() => {
+  useEffect(() => {
     if (userLoged.token == null) {
       window.location.href = "/login";
     }
   }, []);
 
   const theme = useTheme();
-  // const [sideBarOpen, setOpen] = React.useState(false);
-
   const handleDrawerOpen = () => {
     dispatch(setSideBar({ value: true }));
   };

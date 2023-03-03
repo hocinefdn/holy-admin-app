@@ -6,10 +6,11 @@ import SellIcon from "@mui/icons-material/Sell";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
-
+import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
 export const links = [
-  { label: "Statistiques", icon: "stats", link: "/stats" },
   { label: "Boutique", icon: "shop", link: "/shop" },
+  { label: "Statistiques", icon: "stats", link: "/stats" },
+  { label: "Services", icon: "services", link: "/services" },
   { label: "Articles", icon: "articles", link: "/articles" },
   { label: "Clients", icon: "group", link: "/customers" },
   { label: "Notifications", icon: "notifications", link: "/notifications" },
@@ -17,10 +18,12 @@ export const links = [
 
 export const linksIcons = (icons) => {
   switch (icons) {
-    case "stats":
-      return <EqualizerIcon />;
     case "shop":
       return <StorefrontIcon />;
+    case "stats":
+      return <EqualizerIcon />;
+    case "services":
+      return <HomeRepairServiceIcon />;
     case "categories":
       return <FormatListBulletedIcon />;
     case "articles":

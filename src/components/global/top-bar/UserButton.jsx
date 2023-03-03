@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+// mui
 import Avatar from "@mui/material/Avatar";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -5,9 +8,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import { useState } from "react";
 import { IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
+// redux
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../../store/reducers/userSlice";
 

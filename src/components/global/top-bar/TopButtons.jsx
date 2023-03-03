@@ -1,8 +1,10 @@
+import React from "react";
+// mui
 import { Badge, Box, Button, IconButton, Typography } from "@mui/material";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import React from "react";
+// components
 import UserButton from "./UserButton";
 
 function TopButtons() {
