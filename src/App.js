@@ -2,7 +2,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 //pages
 import StatsPage from "./pages/StatsPage";
-import ShopPage from "./pages/ShopPage";
+import ShopPage from "./pages/shop/ShopPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import ArticlesPage from "./pages/ArticlesPage";
 import NotificationsPage from "./pages/NotificationsPage";
@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import TariffsPage from "./pages/TariffsPage";
+import CreateShopPage from "./pages/shop/CreateShopPage";
 
 const theme = createTheme({
   palette: {
@@ -50,7 +51,10 @@ function App() {
 
             {/* -------------  Dashboard  -------------- */}
             <Route path="/stats" element={<StatsPage />} />
+            {/* shop */}
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop/create-shop" element={<CreateShopPage />} />
+
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/articles" element={<ArticlesPage />} />
             <Route path="/notifications" element={<NotificationsPage />} />

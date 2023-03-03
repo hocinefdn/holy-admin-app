@@ -1,6 +1,7 @@
 import { Add } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 // components
 import CardList from "./CardShop";
 const ShopsList = () => {
@@ -8,9 +9,11 @@ const ShopsList = () => {
     <div>
       <h1 className="text-2xl text-center ">Vos boutiques</h1>
       <div className="p-4 flex justify-end">
-        <Button variant="contained" color="secondary" startIcon={<Add />}>
-          Ajouter une boutique
-        </Button>
+        <Link to="/shop/create-shop">
+          <Button variant="contained" color="secondary" startIcon={<Add />}>
+            Ajouter une boutique
+          </Button>
+        </Link>
       </div>
       <div className="flex justify-center">
         <ul className="grid grid-cols-2 gap-20">
