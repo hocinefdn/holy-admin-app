@@ -23,6 +23,7 @@ import TopBar from "./top-bar/TopBarAdmin";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { setSideBar } from "../../store/reducers/componentsSlice";
+import { LinearProgress } from "@mui/material";
 
 const drawerWidth = 240;
 
@@ -93,7 +94,10 @@ const Drawer = styled(MuiDrawer, {
 
 function SideBar({ content }) {
   const userLoged = useSelector((state) => state.user);
-  const sideBarOpen = useSelector((state) => state.sideBar.sideBar);
+  const sideBarOpen = useSelector((state) => state.components.sideBar);
+  const displayLinearProgress = useSelector(
+    (state) => state.components.displayLinearProgress
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -130,6 +134,8 @@ function SideBar({ content }) {
           </IconButton>
           <TopBar />
         </Toolbar>
+
+        {displayLinearProgress ? <LinearProgress color="success" /> : ""}
       </AppBar>
       <Drawer variant="permanent" sideBarOpen={sideBarOpen}>
         <DrawerHeader>
@@ -178,6 +184,7 @@ function SideBar({ content }) {
         </List>
         <Divider />
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         {content}

@@ -10,19 +10,17 @@ import ShopManagement from "../../components/shop/ShopsList";
 import { apiUrl } from "../../constants/api";
 function ShopPage() {
   const userLoged = useSelector((state) => state.user.userData);
-  const [shop, setShop] = useState([]);
+  const [shops, setShops] = useState([]);
 
   useEffect(() => {
     axios
       .get(apiUrl + "/shops/" + userLoged.id)
       .then((res) => {
-        setShop(res.data.shops);
+        setShops(res.data.shops);
       })
       .catch((err) => console.log("err :>> ", err));
-  }, []);
-  return (
-    <SideBar content={shop.length !== 0 ? <ShopManagement /> : <ShopsList />} />
-  );
+  }, [userLoged.id]);
+  return <SideBar content={<ShopsList shops={shops} />} />;
 }
 
 export default ShopPage;

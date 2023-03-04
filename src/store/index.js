@@ -13,7 +13,7 @@ const persistConfig = {
 
 const reducer = combineReducers({
   user: userReducer,
-  sideBar: componentReducer,
+  components: componentReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducer);

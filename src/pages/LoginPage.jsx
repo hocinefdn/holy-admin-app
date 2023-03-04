@@ -17,7 +17,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (userLoged.token != null) {
-      window.location.href = "/stats";
+      window.location.href = "/shop";
     }
   }, []);
   const login = () => {

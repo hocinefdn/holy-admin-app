@@ -1,14 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 // mui
-import { Button, TextField } from "@mui/material";
+import { Button, LinearProgress, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import { apiUrl } from "../../constants/api.js";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { setDisplayLinearProgress } from "../../store/reducers/componentsSlice.js";
 export default function CreateShopForm() {
   const userLoged = useSelector((state) => state.user.userData);
-
+  const dispatch = useDispatch();
   // console.log("userLoged :>> ", userLoged);
   const [shop, setShop] = useState({
     name: "",
@@ -19,10 +19,14 @@ export default function CreateShopForm() {
   });
 
   const createShop = () => {
-    console.log("shop :>> ", shop);
+    dispatch(setDisplayLinearProgress({ value: true }));
     axios
       .post(apiUrl + "/shops", shop)
-      .then((res) => console.log("res.data :>> ", res.data))
+      .then((res) => {
+        console.log("res.data :>> ", res.message);
+        dispatch(setDisplayLinearProgress({ value: false }));
+        window.location.href = "/shop";
+      })
       .catch((err) => console.log("err :>> ", err.response.data.message));
   };
   return (
