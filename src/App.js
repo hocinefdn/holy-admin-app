@@ -2,7 +2,6 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 //pages
 import StatsPage from "./pages/StatsPage";
-import ShopPage from "./pages/shop/ShopPage";
 import CategoriesPage from "./pages/CategoriesPage";
 import ArticlesPage from "./pages/ArticlesPage";
 import NotificationsPage from "./pages/NotificationsPage";
@@ -13,6 +12,8 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import TariffsPage from "./pages/TariffsPage";
 import CreateShopPage from "./pages/shop/CreateShopPage";
+import ShopsList from "./components/shop/ShopsList";
+import ShopsPage from "./pages/shop/ShopsPage";
 
 const theme = createTheme({
   palette: {
@@ -49,16 +50,24 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
 
-            {/* -------------  Dashboard  -------------- */}
-            <Route path="/stats" element={<StatsPage />} />
             {/* shop */}
-            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shops" element={<ShopsPage />} />
             <Route path="/shop/create-shop" element={<CreateShopPage />} />
 
-            <Route path="/categories" element={<CategoriesPage />} />
-            <Route path="/articles" element={<ArticlesPage />} />
-            <Route path="/notifications" element={<NotificationsPage />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/:shopSlug" element={<ShopsList />} />
+
+            {/* -------------  Dashboard  -------------- */}
+            <Route path="/:shopSlug/stats" element={<StatsPage />} />
+
+            <Route path="/:shopSlug/categories" element={<CategoriesPage />} />
+            <Route path="/:shopSlug/articles" element={<ArticlesPage />} />
+            <Route
+              path="/:shopSlug/notifications"
+              element={<NotificationsPage />}
+            />
+            <Route path="/:shopSlug/settings" element={<SettingsPage />} />
+
+            {/* -------------  404 error page  ------------- */}
             <Route path="/*" element={<ErrorPage />} />
           </Routes>
         </Router>

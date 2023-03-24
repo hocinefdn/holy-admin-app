@@ -7,8 +7,9 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsIcon from "@mui/icons-material/Settings";
 import GroupIcon from "@mui/icons-material/Group";
 import HomeRepairServiceIcon from "@mui/icons-material/HomeRepairService";
+
 export const links = [
-  { label: "Boutique", icon: "shop", link: "/shop" },
+  { label: "Boutique", icon: "shop", link: "/shops" },
   { label: "Statistiques", icon: "stats", link: "/stats" },
   { label: "Services", icon: "services", link: "/services" },
   { label: "Articles", icon: "articles", link: "/articles" },

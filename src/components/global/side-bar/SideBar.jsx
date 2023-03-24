@@ -19,10 +19,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { links, linksIcons } from "./side-bar-links";
 // components
-import TopBar from "./top-bar/TopBarAdmin";
+import TopBar from "../top-bar/TopBarAdmin";
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { setSideBar } from "../../store/reducers/componentsSlice";
+import { setSideBar } from "../../../store/reducers/componentsSlice";
 import { LinearProgress } from "@mui/material";
 
 const drawerWidth = 240;

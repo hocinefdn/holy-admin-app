@@ -4,7 +4,7 @@ import "./style/card-style.css";
 const CardShop = ({ shop }) => {
   let style = JSON.parse(shop.style);
   return (
-    <Link to={`/shop/${shop.id}`}>
+    <Link to={`/${shop.slug}`}>
       <div
         className="flip-card"
         style={{

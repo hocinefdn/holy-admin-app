@@ -17,7 +17,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (userLoged.token != null) {
-      window.location.href = "/shop";
+      window.location.href = "/shops";
     }
   }, []);
   const login = () => {
@@ -28,7 +28,7 @@ function LoginPage() {
       .then((res) => {
         dispatch(setUserData({ user: res.data.user, token: res.data.token }));
 
-        window.location = "/stats";
+        window.location = "/shops";
       })
       .catch((err) => console.log("err :>> ", err.response.data.message));
   };

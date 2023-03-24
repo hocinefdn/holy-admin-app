@@ -9,6 +9,7 @@ import { apiUrl } from "../../constants/api";
 // components
 import CardList from "./CardShop";
 import { useSelector } from "react-redux";
+import SideBar from "../global/side-bar/SideBar";
 
 const ShopsList = ({ shops }) => {
   return (
