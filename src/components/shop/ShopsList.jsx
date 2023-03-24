@@ -14,14 +14,6 @@ import SideBar from "../global/side-bar/SideBar";
 const ShopsList = ({ shops }) => {
   return (
     <div>
-      <h1 className="text-2xl text-center ">Vos boutiques</h1>
-      <div className="p-4 flex justify-end">
-        <Link to="/shop/create-shop">
-          <Button variant="contained" color="secondary" startIcon={<Add />}>
-            Ajouter une boutique
-          </Button>
-        </Link>
-      </div>
       <div className="flex justify-center">
         <div className="grid grid-cols-2 gap-20">
           {shops.map((shop) => (

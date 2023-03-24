@@ -1,16 +1,18 @@
+import { CircularProgress } from "@mui/material";
 import React from "react";
 import SideBar from "../global/side-bar/SideBar";
 
-const ShopNotFound = () => {
+const ShopNotFound = ({ isLoading }) => {
   return (
-    <SideBar
-      content={
+    <div className="text-2xl text-center">
+      {isLoading ? (
         <div>
-          <h1 className="text-2xl text-center ">Vos boutiques</h1>
-          <div className="text-center">Aucun magasin trouvé</div>
+          <CircularProgress color="success" size={70} thickness={5} />
         </div>
-      }
-    />
+      ) : (
+        "Aucun magasin trouvé"
+      )}
+    </div>
   );
 };
 

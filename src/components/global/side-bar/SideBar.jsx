@@ -19,7 +19,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import { linksIcons } from "./side-bar-links";
 // components
-import TopBar from "../top-bar/TopBarAdmin";
+import TopBarAdmin from "../top-bar/TopBarAdmin";
 // redux
 import { useSelector, useDispatch } from "react-redux";
 import { setSideBar } from "../../../store/reducers/componentsSlice";
@@ -170,30 +170,41 @@ function SideBar({ content }) {
     },
   ];
 
+  let shopColors = shop ? JSON.parse(shop.style) : "";
+
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <CssBaseline />
       <AppBar position="fixed" sideBarOpen={sideBarOpen}>
-        <Toolbar>
+        <Toolbar
+          style={{
+            backgroundColor: shopColors.primaryColor + "99",
+          }}
+        >
           <IconButton
             color="inherit"
             aria-label="sideBarOpen drawer"
             onClick={handleDrawerOpen}
             edge="start"
             sx={{
-              marginRight: 5,
+              marginRight: 2,
               ...(sideBarOpen && { display: "none" }),
             }}
           >
             <MenuIcon />
           </IconButton>
-          <TopBar />
+          <TopBarAdmin />
         </Toolbar>
 
         {displayLinearProgress ? <LinearProgress color="success" /> : ""}
       </AppBar>
+
       <Drawer variant="permanent" sideBarOpen={sideBarOpen}>
-        <DrawerHeader>
+        <DrawerHeader
+          style={{
+            backgroundColor: shopColors.primaryColor + "99",
+          }}
+        >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />

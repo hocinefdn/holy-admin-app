@@ -1,5 +1,4 @@
-import { PaperClipIcon } from "@heroicons/react/20/solid";
-import { Button, IconButton, TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import SideBar from "../../components/global/side-bar/SideBar";
 import { useSelector } from "react-redux";
