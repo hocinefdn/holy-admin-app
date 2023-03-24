@@ -12,6 +12,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import { Box } from "@mui/system";
 import Paper from "@mui/material/Paper";
 import {
+  CircularProgress,
   FilledInput,
   FormControl,
   InputAdornment,
@@ -25,20 +26,25 @@ import AddImages from "./AddImages";
 import axios from "axios";
 import { apiUrl } from "../../constants/api";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 export default function AddArticle({ openDialog, setOpenDialog }) {
+  const shop = useSelector((state) => state.shop.shopData);
   const [article, setArticle] = useState({
     title: "",
     description: "",
     price: 0,
     stock: 0,
-    category: null,
+    details: { test: "test" },
+    categoryId: null,
+    shopId: shop.id,
   });
   const [allCategories, setAllCategories] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const dataFetch = async () => {
@@ -52,6 +58,19 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
     dataFetch();
   }, []);
 
+  const addArticle = () => {
+    setIsLoading(true);
+    axios
+      .post(apiUrl + "/articles", article)
+      .then((res) => {
+        setIsLoading(false);
+        console.log("res :>> ", res);
+        setOpenDialog(false);
+      })
+      .catch((err) => {
+        console.log("err :>> ", err.response.data);
+      });
+  };
   return (
     <div>
       <Dialog
@@ -77,7 +96,7 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
               variant="contained"
               autoFocus
               color="success"
-              onClick={() => setOpenDialog(false)}
+              onClick={addArticle}
               startIcon={<SaveIcon />}
             >
               Enregistrer
@@ -85,6 +104,13 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
           </Toolbar>
         </AppBar>
         <Box>
+          {isLoading ? (
+            <div className="text-center p-2">
+              <CircularProgress color="success" />
+            </div>
+          ) : (
+            ""
+          )}
           {/* ####################################   Add article form   #################################"" */}
           <Paper elevation={3} className="p-4 flex m-3">
             <div className="w-1/2 p-2">
@@ -117,6 +143,9 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
                 color="secondary"
                 variant="filled"
                 margin="dense"
+                onChange={(e) => {
+                  setArticle({ ...article, description: e.target.value });
+                }}
               />
               <div className="flex justify-between">
                 {/* ---------------------   Price   --------------- */}
@@ -126,6 +155,9 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
                   margin="dense"
                   size="small"
                   required
+                  onChange={(e) => {
+                    setArticle({ ...article, price: e.target.value });
+                  }}
                 >
                   <InputLabel htmlFor="price">Prix</InputLabel>
                   <FilledInput
@@ -146,6 +178,9 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
                   margin="dense"
                   size="small"
                   type="number"
+                  onChange={(e) => {
+                    setArticle({ ...article, stock: e.target.value });
+                  }}
                 />
 
                 {/* ------------------  category  ----------------- */}
@@ -162,7 +197,7 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
                     labelId="demo-simple-select-filled-label"
                     id="demo-simple-select-filled"
                     onChange={(e) =>
-                      setArticle({ ...article, category: e.target.value })
+                      setArticle({ ...article, categoryId: e.target.value })
                     }
                     defaultValue={""}
                   >
