@@ -12,8 +12,10 @@ import RegisterPage from "./pages/RegisterPage";
 import HomePage from "./pages/HomePage";
 import TariffsPage from "./pages/TariffsPage";
 import CreateShopPage from "./pages/shop/CreateShopPage";
-import ShopsList from "./components/shop/ShopsList";
+
 import ShopsPage from "./pages/shop/ShopsPage";
+import ShopSettingsPage from "./pages/shop/ShopSettingsPage";
+import ManageShopStylePage from "./pages/manage-shop-style/ManageShopStylePage";
 
 const theme = createTheme({
   palette: {
@@ -54,13 +56,15 @@ function App() {
             <Route path="/shops" element={<ShopsPage />} />
             <Route path="/shop/create-shop" element={<CreateShopPage />} />
 
-            <Route path="/:shopSlug" element={<ShopsList />} />
-
             {/* -------------  Dashboard  -------------- */}
             <Route path="/:shopSlug/stats" element={<StatsPage />} />
-
             <Route path="/:shopSlug/categories" element={<CategoriesPage />} />
             <Route path="/:shopSlug/articles" element={<ArticlesPage />} />
+            <Route
+              path="/:shopSlug/manage-shop-style"
+              element={<ManageShopStylePage />}
+            />
+            <Route path="/:shopSlug/settings" element={<ShopSettingsPage />} />
             <Route
               path="/:shopSlug/notifications"
               element={<NotificationsPage />}

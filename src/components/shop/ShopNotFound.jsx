@@ -1,5 +1,5 @@
 import React from "react";
-import SideBar from "../../components/global/side-bar/SideBar";
+import SideBar from "../global/side-bar/SideBar";
 
 const ShopNotFound = () => {
   return (

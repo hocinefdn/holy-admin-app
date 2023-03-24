@@ -1,25 +1,27 @@
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import Loader from "../../components/global/loader/Loader";
+import { useDispatch, useSelector } from "react-redux";
 
 // components
 import SideBar from "../../components/global/side-bar/SideBar";
-import ShopInfo from "../../components/shop/ShopInfo";
 import ShopsList from "../../components/shop/ShopsList";
 import ShopManagement from "../../components/shop/ShopsList";
 
 // api url
 import { apiUrl } from "../../constants/api";
-import ShopNotFound from "./ShopNotFound";
+import { resetShop } from "../../store/reducers/shopSlice";
+import ShopNotFound from "../../components/shop/ShopNotFound";
 function ShopsPage() {
   const userLoged = useSelector((state) => state.user.userData);
   const [shops, setShops] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
+    //reset shop
+    dispatch(resetShop());
     axios
       .get(apiUrl + "/shops/" + userLoged.id)
       .then((res) => {

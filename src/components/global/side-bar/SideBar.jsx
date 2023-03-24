@@ -17,7 +17,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import { links, linksIcons } from "./side-bar-links";
+import { linksIcons } from "./side-bar-links";
 // components
 import TopBar from "../top-bar/TopBarAdmin";
 // redux
@@ -98,6 +98,8 @@ function SideBar({ content }) {
   const displayLinearProgress = useSelector(
     (state) => state.components.displayLinearProgress
   );
+  const shop = useSelector((state) => state.shop.shopData);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -114,6 +116,59 @@ function SideBar({ content }) {
   const handleDrawerClose = () => {
     dispatch(setSideBar({ value: false }));
   };
+
+  // ----------------------------   links  -----------------------------------
+  const links = [
+    { label: "Boutiques", icon: "shop", link: "/shops", isDispayed: true },
+    {
+      label: "Statistiques",
+      icon: "stats",
+      link: `${shop ? "/" + shop.slug + "/stats" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Services",
+      icon: "services",
+      link: "/services",
+      isDispayed: shop ? false : true,
+    },
+    {
+      label: "Catégories",
+      icon: "categories",
+      link: `${shop ? "/" + shop.slug + "/categories" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Articles",
+      icon: "articles",
+      link: `${shop ? "/" + shop.slug + "/articles" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Clients",
+      icon: "group",
+      link: `${shop ? "/" + shop.slug + "/customers" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Style",
+      icon: "shop-style",
+      link: `${shop ? "/" + shop.slug + "/manage-shop-style" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Paramètres",
+      icon: "settings",
+      link: `${shop ? "/" + shop.slug + "/settings" : ""}`,
+      isDispayed: shop ? true : false,
+    },
+    {
+      label: "Notifications",
+      icon: "notifications",
+      link: "/notifications",
+      isDispayed: true,
+    },
+  ];
 
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
@@ -149,38 +204,42 @@ function SideBar({ content }) {
         </DrawerHeader>
         <Divider />
         <List>
-          {links.map((link, index) => (
-            <Link key={`link-${link.label}`} to={link.link}>
-              <ListItem
-                key={link.label}
-                disablePadding
-                sx={{ display: "block" }}
-                to={link.link}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: sideBarOpen ? "initial" : "center",
-                    px: 2.5,
-                  }}
+          {links.map((link, index) =>
+            link.isDispayed ? (
+              <Link key={`link-${link.label}`} to={link.link}>
+                <ListItem
+                  key={link.label}
+                  disablePadding
+                  sx={{ display: "block" }}
+                  to={link.link}
                 >
-                  <ListItemIcon
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      mr: sideBarOpen ? 3 : "auto",
-                      justifyContent: "center",
+                      minHeight: 48,
+                      justifyContent: sideBarOpen ? "initial" : "center",
+                      px: 2.5,
                     }}
                   >
-                    {linksIcons(link.icon)}
-                  </ListItemIcon>
-                  <ListItemText
-                    primary={link.label}
-                    sx={{ opacity: sideBarOpen ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ))}
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: sideBarOpen ? 3 : "auto",
+                        justifyContent: "center",
+                      }}
+                    >
+                      {linksIcons(link.icon)}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={link.label}
+                      sx={{ opacity: sideBarOpen ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            ) : (
+              ""
+            )
+          )}
         </List>
         <Divider />
       </Drawer>
