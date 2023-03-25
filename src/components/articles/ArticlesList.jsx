@@ -1,11 +1,4 @@
-import { Button, CircularProgress, IconButton } from "@mui/material";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
-import AddIcon from "@mui/icons-material/Add";
-import { useEffect, useState } from "react";
-import AddArticle from "./AddArticle";
-import axios from "axios";
-import { apiUrl } from "../../constants/api";
+import ArticleCard from "./ArticleCard";
 
 export default function ArticlesList({ articles }) {
   return (
@@ -19,37 +12,7 @@ export default function ArticlesList({ articles }) {
 
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {articles.map((article) => (
-            <div key={article.id} className="group relative">
-              <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
-                <img
-                  src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-                  alt={article.imageAlt}
-                  className="h-full w-full object-cover object-center lg:h-full lg:w-full"
-                />
-              </div>
-              <div className="mt-4 flex justify-between">
-                <div>
-                  <h3 className="text-sm text-gray-700">
-                    <a href={article.href}>
-                      <span aria-hidden="true" className="absolute inset-0" />
-                      {article.title}
-                    </a>
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">{article.color}</p>
-                </div>
-                <p className="text-lg font-bold text-green-500">
-                  {article.price} DA
-                </p>
-              </div>
-              <div className="flex justify-end">
-                <IconButton aria-label="delete" color="error">
-                  <DeleteIcon />
-                </IconButton>
-                <IconButton aria-label="delete">
-                  <EditIcon />
-                </IconButton>
-              </div>
-            </div>
+            <ArticleCard article={article} key={`article-${article.id}`} />
           ))}
         </div>
       </div>

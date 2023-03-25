@@ -1,4 +1,4 @@
-import { Button, CircularProgress } from "@mui/material";
+import { Button } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,7 @@ import ShopsList from "../../components/shop/ShopsList";
 // api url
 import { apiUrl } from "../../constants/api";
 import { resetShop } from "../../store/reducers/shopSlice";
-import RessourceNotFound from "../../components/shop/RessouceNotFound";
+import RessourceNotFound from "../../components/global/RessouceNotFound";
 import { Link } from "react-router-dom";
 import { Add } from "@mui/icons-material";
 

@@ -3,7 +3,7 @@ import SideBar from "../../components/global/side-bar/SideBar";
 import ArticlesList from "../../components/articles/ArticlesList";
 import axios from "axios";
 import { apiUrl } from "../../constants/api";
-import RessouceNotFound from "../../components/shop/RessouceNotFound";
+import RessouceNotFound from "../../components/global/RessouceNotFound";
 import AddArticle from "../../components/articles/AddArticle";
 import { Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -24,7 +24,6 @@ function ArticlesPage() {
     axios
       .get(apiUrl + "/articles/get-shop-articles/" + shop.id)
       .then((res) => {
-        console.log("res :>> ", res);
         setArticles(res.data.articles);
         setIsLoading(false);
       })
@@ -50,7 +49,7 @@ function ArticlesPage() {
           ) : (
             <RessouceNotFound
               isLoading={isLoading}
-              content={`Aucun article trouvé ${articles.length}`}
+              content={`Aucun article trouvé`}
             />
           )}
 
