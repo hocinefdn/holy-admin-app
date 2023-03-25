@@ -119,59 +119,77 @@ function SideBar({ content }) {
 
   // ----------------------------   links  -----------------------------------
   const links = [
-    { label: "Boutiques", icon: "shop", link: "/shops", isDispayed: true },
+    {
+      label: "Boutiques",
+      icon: "shop",
+      link: "/shops",
+      isDispayed: true,
+      isClicked: false,
+    },
     {
       label: "Statistiques",
       icon: "stats",
       link: `${shop ? "/" + shop.slug + "/stats" : ""}`,
       isDispayed: shop ? true : false,
+      isClicked: false,
     },
     {
       label: "Services",
       icon: "services",
       link: "/services",
       isDispayed: shop ? false : true,
+      isClicked: false,
     },
     {
       label: "Catégories",
       icon: "categories",
       link: `${shop ? "/" + shop.slug + "/categories" : ""}`,
       isDispayed: shop ? true : false,
+      isClicked: false,
     },
     {
       label: "Articles",
       icon: "articles",
       link: `${shop ? "/" + shop.slug + "/articles" : ""}`,
       isDispayed: shop ? true : false,
+      isClicked: false,
     },
     {
       label: "Clients",
       icon: "group",
       link: `${shop ? "/" + shop.slug + "/customers" : ""}`,
       isDispayed: shop ? true : false,
+      isClicked: false,
     },
     {
       label: "Style",
       icon: "shop-style",
       link: `${shop ? "/" + shop.slug + "/manage-shop-style" : ""}`,
       isDispayed: shop ? true : false,
-    },
-    {
-      label: "Paramètres",
-      icon: "settings",
-      link: `${shop ? "/" + shop.slug + "/settings" : ""}`,
-      isDispayed: shop ? true : false,
+      isClicked: false,
     },
     {
       label: "Notifications",
       icon: "notifications",
       link: "/notifications",
       isDispayed: true,
+      isClicked: false,
+    },
+    {
+      label: "Paramètres",
+      icon: "settings",
+      link: `${shop ? "/" + shop.slug + "/settings" : ""}`,
+      isDispayed: shop ? true : false,
+      isClicked: false,
     },
   ];
 
   let shopColors = shop ? JSON.parse(shop.style) : "";
 
+  const setIsClicked = (label) => {
+    const index = links.findIndex((link) => link.label === label);
+    links[index].isClicked = true;
+  };
   return (
     <Box sx={{ display: "flex", width: "100%" }}>
       <CssBaseline />
@@ -217,11 +235,18 @@ function SideBar({ content }) {
         <List>
           {links.map((link, index) =>
             link.isDispayed ? (
-              <Link key={`link-${link.label}`} to={link.link}>
+              <Link
+                key={`link-${link.label}`}
+                to={link.link}
+                onClick={() => setIsClicked(link.label)}
+              >
                 <ListItem
                   key={link.label}
                   disablePadding
-                  sx={{ display: "block" }}
+                  sx={{
+                    display: "block",
+                    backgroundColor: link.isClicked ? "grey" : "#fff",
+                  }}
                   to={link.link}
                 >
                   <ListItemButton

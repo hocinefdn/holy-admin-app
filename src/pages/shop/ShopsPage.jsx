@@ -10,7 +10,7 @@ import ShopsList from "../../components/shop/ShopsList";
 // api url
 import { apiUrl } from "../../constants/api";
 import { resetShop } from "../../store/reducers/shopSlice";
-import ShopNotFound from "../../components/shop/ShopNotFound";
+import RessourceNotFound from "../../components/shop/RessouceNotFound";
 import { Link } from "react-router-dom";
 import { Add } from "@mui/icons-material";
 
@@ -49,7 +49,10 @@ function ShopsPage() {
           {shops.length ? (
             <ShopsList shops={shops} />
           ) : (
-            <ShopNotFound isLoading={isLoading} />
+            <RessourceNotFound
+              isLoading={isLoading}
+              content="Aucun magasin trouvé"
+            />
           )}
         </div>
       }

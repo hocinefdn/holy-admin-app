@@ -3,7 +3,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 //pages
 import StatsPage from "./pages/StatsPage";
 import CategoriesPage from "./pages/CategoriesPage";
-import ArticlesPage from "./pages/ArticlesPage";
+import ArticlesPage from "./pages/articles/ArticlesPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import SettingsPage from "./pages/SettingsPage";
 import ErrorPage from "./pages/ErrorPage";
