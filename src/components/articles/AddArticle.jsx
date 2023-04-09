@@ -43,6 +43,7 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
     categoryId: null,
     shopId: shop.id,
   });
+  const [articleImages, setArtcileImages] = useState(null);
   const [allCategories, setAllCategories] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -60,8 +61,20 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
 
   const addArticle = () => {
     setIsLoading(true);
+    const formData = new FormData();
+    formData.append("articleImages", articleImages);
+
+    //  article data
+    formData.append("title", article.title);
+    formData.append("description", article.description);
+    formData.append("price", article.price);
+    formData.append("stock", article.stock);
+    formData.append("details", article.details);
+    formData.append("categoryId", article.categoryId);
+    formData.append("shopId", article.shopId);
+
     axios
-      .post(apiUrl + "/articles", article)
+      .post(apiUrl + "/articles", formData)
       .then((res) => {
         setIsLoading(false);
         console.log("res :>> ", res);
@@ -219,7 +232,7 @@ export default function AddArticle({ openDialog, setOpenDialog }) {
             </div>
             <div className="w-1/2 p-2">
               <h2 className="text-center text-xl mb-2">Images de l'article</h2>
-              <AddImages />
+              <AddImages setArtcileImages={setArtcileImages} />
             </div>
           </Paper>
         </Box>

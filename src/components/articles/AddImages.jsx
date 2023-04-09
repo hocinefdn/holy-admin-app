@@ -2,13 +2,11 @@ import * as React from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import InfoIcon from "@mui/icons-material/Info";
-import { Button, Fab, Input } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { Button } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
-export default function AddImages() {
+export default function AddImages({ setArtcileImages }) {
   return (
     <div>
       <Button
@@ -19,7 +17,12 @@ export default function AddImages() {
         size="small"
       >
         Ajouter image
-        <input type="file" hidden />
+        <input
+          type="file"
+          hidden
+          name="articleImage"
+          onChange={(e) => setArtcileImages(e.target.files[0])}
+        />
       </Button>
 
       {/* ######################  list of images  ############################ */}

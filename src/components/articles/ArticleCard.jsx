@@ -2,7 +2,7 @@ import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
-import { apiUrl } from "../../constants/api";
+import { apiUrl, backendUrl } from "../../constants/api";
 
 const ArticleCard = ({ article }) => {
   const deleteArticle = (articleId) => {
@@ -20,8 +20,8 @@ const ArticleCard = ({ article }) => {
     <div key={article.id} className="group relative">
       <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 group-hover:opacity-75 lg:aspect-none lg:h-80">
         <img
-          src="https://tailwindui.com/img/ecommerce-images/product-page-01-related-product-01.jpg"
-          alt={article.imageAlt}
+          src={`${backendUrl}${article.images[0].link}`}
+          alt={article.images[0].title}
           className="h-full w-full object-cover object-center lg:h-full lg:w-full"
         />
       </div>

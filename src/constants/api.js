@@ -1,2 +1,3 @@
 // local
-export const apiUrl = "http://achete-le.test/api";
+export const apiUrl = "http://ho-lyz.test/api";
+export const backendUrl = "http://ho-lyz.test";
