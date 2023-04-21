@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SideBar from "../../components/global/side-bar/SideBar";
-import ArticlesList from "../../components/articles/ArticlesList";
+import ArticlesDataGrid from "../../components/articles/ArticlesDataGrid";
 import axios from "axios";
 import { apiUrl } from "../../constants/api";
 import RessouceNotFound from "../../components/global/RessouceNotFound";
@@ -45,7 +45,7 @@ function ArticlesPage() {
             </Button>
           </div>
           {articles.length ? (
-            <ArticlesList articles={articles} />
+            <ArticlesDataGrid articles={articles} />
           ) : (
             <RessouceNotFound
               isLoading={isLoading}
