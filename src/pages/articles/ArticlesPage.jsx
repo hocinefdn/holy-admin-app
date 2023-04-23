@@ -5,8 +5,6 @@ import axios from "axios";
 import { apiUrl } from "../../constants/api";
 import RessouceNotFound from "../../components/global/RessouceNotFound";
 import AddArticle from "../../components/articles/AddArticle";
-import { Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 
 function ArticlesPage() {
@@ -14,10 +12,6 @@ function ArticlesPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
   const shop = useSelector((state) => state.shop.shopData);
-
-  const handleClickOpen = () => {
-    setOpenDialog(true);
-  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -28,24 +22,17 @@ function ArticlesPage() {
         setIsLoading(false);
       })
       .catch((err) => console.log("err :>> ", err));
-  }, []);
+  }, [shop.id]);
 
   return (
     <SideBar
       content={
         <div>
-          <div className="flex justify-end">
-            <Button
-              variant="contained"
-              endIcon={<AddIcon />}
-              color="success"
-              onClick={() => setOpenDialog(true)}
-            >
-              Ajouter
-            </Button>
-          </div>
           {articles.length ? (
-            <ArticlesDataGrid articles={articles} />
+            <ArticlesDataGrid
+              articles={articles}
+              setOpenDialog={setOpenDialog}
+            />
           ) : (
             <RessouceNotFound
               isLoading={isLoading}
